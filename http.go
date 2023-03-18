@@ -78,7 +78,7 @@ func (h *Http) Get(headers map[string]string) (*gjson.Result, error) {
 	root := gjson.Parse(content)
 	// 状态码
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New(root.String())
+		return &root, errors.New(root.String())
 	}
 	return &root, nil
 }

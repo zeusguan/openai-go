@@ -1,13 +1,15 @@
 package openai_go
 
 type openAi struct {
-	Token string `json:"token"`
+	Token    string     `json:"token"`
+	Messages []*Message `json:"messages"`
 }
 
 // NewOpenAI 新建一个OpenAI对象
 func NewOpenAI(token string) *openAi {
 	return &openAi{
-		Token: token,
+		Token:    token,
+		Messages: []*Message{},
 	}
 }
 
