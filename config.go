@@ -46,3 +46,11 @@ type Image struct {
 	Size           string `json:"size"`
 	ResponseFormat string `json:"response_Format"`
 }
+
+// Model 模型
+type Model struct {
+	Id         string      `json:"id"`
+	Object     string      `json:"object"`
+	OwnedBy    string      `json:"owned_by"`
+	Permission interface{} `json:"permission"`
+}

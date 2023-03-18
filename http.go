@@ -52,3 +52,33 @@ func (h *Http) Post(data string, headers map[string]string) (*gjson.Result, erro
 	}
 	return &root, nil
 }
+
+func (h *Http) Get(headers map[string]string) (*gjson.Result, error) {
+	request, err := http.NewRequest("GET", h.Url, nil)
+	if err != nil {
+		return nil, err
+	}
+	// 绑定headers
+	for key, value := range headers {
+		request.Header.Add(key, value)
+	}
+	client := http.Client{
+		Timeout: h.Timeout,
+	}
+	resp, err := client.Do(request)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	content := string(body)
+	if !gjson.Valid(content) {
+		return nil, errors.New("返回结果非JSON，body:" + content)
+	}
+	root := gjson.Parse(content)
+	// 状态码
+	if resp.StatusCode != http.StatusOK {
+		return nil, errors.New(root.String())
+	}
+	return &root, nil
+}
