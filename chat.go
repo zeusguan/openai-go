@@ -63,9 +63,9 @@ func (openAi *openAi) ExtractChatCompletionFields(completion *ChatCompletion) ma
 	if completion.Model != "" {
 		result["model"] = completion.Model
 	}
-	if completion.Temperature != 0 {
-		result["temperature"] = completion.Temperature
-	}
+	//if completion.Temperature != 0 {
+	//	result["temperature"] = completion.Temperature
+	//}
 	if completion.TopP != 0 {
 		result["top_p"] = completion.TopP
 	}
@@ -81,12 +81,12 @@ func (openAi *openAi) ExtractChatCompletionFields(completion *ChatCompletion) ma
 	if completion.MaxTokens != 0 {
 		result["max_tokens"] = completion.MaxTokens
 	}
-	if completion.PresencePenalty != 0 {
-		result["presence_penalty"] = completion.PresencePenalty
-	}
-	if completion.FrequencyPenalty != 0 {
-		result["frequency_penalty"] = completion.FrequencyPenalty
-	}
+	//if completion.PresencePenalty != 0 {
+	//	result["presence_penalty"] = completion.PresencePenalty
+	//}
+	//if completion.FrequencyPenalty != 0 {
+	//	result["frequency_penalty"] = completion.FrequencyPenalty
+	//}
 	if completion.LogitBias != nil {
 		result["logit_bias"] = completion.LogitBias
 	}
