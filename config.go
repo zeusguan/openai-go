@@ -7,7 +7,7 @@ type Message struct {
 
 type ChatCompletion struct {
 	Model            string                 `json:"model"`       // 模型
-	Temperature      string                 `json:"temperature"` // 答案的偏移程度
+	Temperature      float32                `json:"temperature"` // 答案的偏移程度
 	TopP             int                    `json:"top_p"`       // 答案的偏移程度 top和temperature不能一起用
 	N                int                    `json:"n"`           // 输出条数
 	Stream           bool                   `json:"stream"`      //  流式输出，可以优化体验
