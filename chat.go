@@ -57,3 +57,44 @@ func (openAi *openAi) ChatCompletions(completion *ChatCompletion, timeout time.D
 	}
 	return messages, nil
 }
+
+func (openAi *openAi) ExtractChatCompletionFields(completion *ChatCompletion) map[string]interface{} {
+	result := make(map[string]interface{})
+	if completion.Model != "" {
+		result["model"] = completion.Model
+	}
+	if completion.Temperature != 0 {
+		result["temperature"] = completion.Temperature
+	}
+	if completion.TopP != 0 {
+		result["top_p"] = completion.TopP
+	}
+	if completion.N != 0 {
+		result["N"] = completion.N
+	}
+	if completion.Stream != false {
+		result["stream"] = completion.Stream
+	}
+	if completion.Stop != "" {
+		result["stop"] = completion.Stop
+	}
+	if completion.MaxTokens != 0 {
+		result["max_tokens"] = completion.MaxTokens
+	}
+	if completion.PresencePenalty != 0 {
+		result["presence_penalty"] = completion.PresencePenalty
+	}
+	if completion.FrequencyPenalty != 0 {
+		result["frequency_penalty"] = completion.FrequencyPenalty
+	}
+	if completion.LogitBias != nil {
+		result["logit_bias"] = completion.LogitBias
+	}
+	if completion.User != "" {
+		result["user"] = completion.User
+	}
+	if completion.Messages != nil {
+		result["messages"] = completion.Messages
+	}
+	return result
+}
